@@ -1,16 +1,18 @@
-import './App.css'
-import { Button } from './components/ui/button'
+import { Outlet } from "react-router";
+import "./App.css";
+import MainLayout from "./layout/MainLayout";
+import { ThemeProvider } from "./provider/ThemeProvider";
 
 function App() {
-
   return (
     <>
-      <div>
-       <Button>Click Me</Button>
-      </div>
-      
+      <ThemeProvider storageKey="vite-ui-theme">
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
