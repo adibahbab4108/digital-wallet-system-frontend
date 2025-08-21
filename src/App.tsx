@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import "./App.css";
-import MainLayout from "./layout/MainLayout";
+import MainLayout from "./components/layout/MainLayout";
 import { ThemeProvider } from "./provider/ThemeProvider";
 
 function App() {
