@@ -13,6 +13,7 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import Password from "@/components/ui/passwordField";
 import { toast } from "sonner";
+import { Link } from "react-router";
 
 export function LoginForm({
   className,
@@ -100,9 +101,9 @@ export function LoginForm({
         </div>
         <div className="text-center text-sm">
           Don&apos;t have an account?{" "}
-          <a href="#" className="underline underline-offset-4">
+          <Link to="/register" className="underline underline-offset-4">
             Sign up
-          </a>
+          </Link>
         </div>
       </form>
     </Form>

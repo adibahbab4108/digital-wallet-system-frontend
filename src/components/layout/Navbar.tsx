@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/popover";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Link } from "react-router";
-import { useUserInfoQuery } from "@/redux/features/user/user.api";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -29,8 +28,7 @@ const navigationLinks = [
 
 
 export default function Navbar() {
-  const {data} = useUserInfoQuery(undefined)
-  console.log(data)
+ 
   return (
     <header className="border-b px-4 md:px-6 sticky top-0 z-50 bg-background">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">

@@ -23,6 +23,7 @@ import {
 import { ROLES } from "@/constants/roles";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 import { toast } from "sonner";
+import { Link } from "react-router";
 
 const registerSchema = z
   .object({
@@ -161,7 +162,7 @@ export function RegisterForm({
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="text-foreground">Submit</Button>
           </form>
         </Form>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
@@ -180,10 +181,10 @@ export function RegisterForm({
         </Button>
       </div>
       <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
-        <a href="#" className="underline underline-offset-4">
-          Sign up
-        </a>
+        Already have an account?{" "}
+        <Link to="/login" className="underline underline-offset-4">
+          Login
+        </Link>
       </div>
     </div>
   );
