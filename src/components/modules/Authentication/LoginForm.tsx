@@ -13,26 +13,30 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import Password from "@/components/ui/passwordField";
 import { toast } from "sonner";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
   const form = useForm();
+  const navigate = useNavigate();
+  const location = useLocation()
+  // console.log(location)
   const [login] = useLoginMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const loginInfo = {
       email: data.email,
       password: data.password,
     };
-    console.log(loginInfo)
+    console.log(loginInfo);
     try {
       const result = await login(loginInfo).unwrap();
       console.log(result);
       toast.success("Logged In successful");
+      navigate("/");
     } catch (error) {
-      toast.error(error.data.message)
+      toast.error(error.data.message);
       console.log(error);
     }
   };
@@ -81,7 +85,10 @@ export function LoginForm({
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full text-foreground cursor-pointer"
+          >
             Login
           </Button>
           <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">

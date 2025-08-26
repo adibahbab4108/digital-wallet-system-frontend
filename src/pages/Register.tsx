@@ -1,4 +1,3 @@
-import { GalleryVerticalEnd } from "lucide-react";
 
 import { RegisterForm } from "@/components/modules/Authentication/RegisterForm";
 import Logo from "@/assets/icons/logo";

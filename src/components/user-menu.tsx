@@ -17,17 +17,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useUserInfoQuery } from "@/redux/features/user/user.api";
-import { useLogoutMutation } from "@/redux/features/auth/auth.api";
+import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 import { Skeleton } from "./ui/skeleton";
 import { Link } from "react-router";
+import { useAppDispatch } from "@/redux/hooks";
 
 export default function UserMenu() {
   const { data, isLoading } = useUserInfoQuery(undefined);
+  const dispatch = useAppDispatch();
   const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
 
   const handleLogout = async () => {
     try {
       await logout(undefined);
+      dispatch(authApi.util.resetApiState()); //reset stale(after invalidation) cached data from auth to work refetching properly
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -98,7 +101,9 @@ export default function UserMenu() {
         </DropdownMenu>
       ) : (
         <Link to="/login">
-          <Button variant="outline" className="cursor-pointer">Login</Button>
+          <Button variant="outline" className="cursor-pointer">
+            Login
+          </Button>
         </Link>
       )}
     </>
