@@ -1,7 +1,6 @@
 import App from "@/App";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import About from "@/pages/About";
-import AgentOverview from "@/pages/Agent/AgentOverview";
 import Contact from "@/pages/Contact";
 import { FAQs } from "@/pages/FAQ";
 import Feature from "@/pages/Feature";
@@ -11,9 +10,10 @@ import Pricing from "@/pages/Pricing";
 import Register from "@/pages/Register";
 import { generateRoutes } from "@/utils/generateRoutes";
 
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebar";
 import { userSidebarItems } from "./userSidebar";
+import { agentSidebarItems } from "./agentSidebar";
 
 export const router = createBrowserRouter([
   {
@@ -49,22 +49,26 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     Component: DashboardLayout,
-    children: [...generateRoutes(adminSidebarItems)],
+    children: [
+      { index: true, element: <Navigate to="/admin/overview" /> },
+      ...generateRoutes(adminSidebarItems),
+    ],
   },
   {
     path: "/agent",
     Component: DashboardLayout,
     children: [
-      {
-        path: "overview",
-        Component: AgentOverview,
-      },
+      { index: true, element: <Navigate to="/agent/overview" /> },
+      ...generateRoutes(agentSidebarItems),
     ],
   },
   {
     path: "/user",
     Component: DashboardLayout,
-    children: [...generateRoutes(userSidebarItems)],
+    children: [
+      { index: true, element: <Navigate to="/user/overview" /> },
+      ...generateRoutes(userSidebarItems),
+    ],
   },
   {
     path: "/login",

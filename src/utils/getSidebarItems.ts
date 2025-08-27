@@ -1,5 +1,6 @@
 import { ROLE } from "@/constants/roles";
 import { adminSidebarItems } from "@/routes/adminSidebar";
+import { agentSidebarItems } from "@/routes/agentSidebar";
 import { userSidebarItems } from "@/routes/userSidebar";
 import type { TRole } from "@/types";
 
@@ -9,6 +10,8 @@ export const getSidebarItems = (userRole: TRole) => {
       return [...adminSidebarItems];
     case ROLE.ADMIN:
       return [...adminSidebarItems];
+    case ROLE.AGENT:
+      return [...agentSidebarItems];
     case ROLE.USER:
       return [...userSidebarItems];
     default:

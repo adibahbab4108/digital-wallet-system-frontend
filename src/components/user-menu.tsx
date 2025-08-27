@@ -21,12 +21,14 @@ import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 import { Skeleton } from "./ui/skeleton";
 import { Link } from "react-router";
 import { useAppDispatch } from "@/redux/hooks";
+import { ROLE } from "@/constants/roles";
+import type { TRole } from "@/types";
 
 export default function UserMenu() {
-  const { data, isLoading } = useUserInfoQuery(undefined);
+  const { data: userData, isLoading } = useUserInfoQuery(undefined);
   const dispatch = useAppDispatch();
   const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
-
+  console.log(userData);
   const handleLogout = async () => {
     try {
       await logout(undefined);
@@ -40,9 +42,19 @@ export default function UserMenu() {
     return <Skeleton className="h-10 w-10 rounded-full" />;
   }
 
-  const user = data?.data;
-  const { name = "User", email = "Not available", picture } = user || {};
+  const user = userData?.data;
+  const { name = "User", email = "Not available", role, picture } = user || {};
 
+  const DASHBOARD_LINKS = {
+    [ROLE.ADMIN]: "/admin/overview",
+    [ROLE.SUPER_ADMIN]: "/admin/overview",
+    [ROLE.AGENT]: "/agent/overview",
+    [ROLE.USER]: "/user/overview",
+  };
+
+  const getDashboardLink = (role: TRole) => DASHBOARD_LINKS[role] || "/";
+
+  console.log(role);
   return (
     <>
       {user ? (
@@ -82,7 +94,7 @@ export default function UserMenu() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/dashboard" className="flex items-center gap-2">
+                <Link to={getDashboardLink(role)} className="flex items-center gap-2">
                   <LayoutDashboardIcon size={16} className="opacity-60" />
                   <span>Dashboard</span>
                 </Link>
