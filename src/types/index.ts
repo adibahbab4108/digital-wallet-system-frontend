@@ -1,3 +1,4 @@
+import type { ROLE } from "@/constants/roles";
 import type { ComponentType } from "react";
 
 export interface IResponse<T> {
@@ -14,3 +15,5 @@ export interface ISidebarItem {
     component: ComponentType;
   }[];
 }
+
+export type TRole = typeof ROLE[keyof typeof ROLE];
