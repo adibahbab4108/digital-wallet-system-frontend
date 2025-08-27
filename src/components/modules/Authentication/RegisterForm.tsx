@@ -20,10 +20,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ROLES } from "@/constants/roles";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 import { toast } from "sonner";
 import { Link } from "react-router";
+import { ROLE } from "@/constants/roles";
 
 const registerSchema = z
   .object({
@@ -31,7 +31,7 @@ const registerSchema = z
       message: "Username must be at least 3 characters.",
     }),
     email: z.email(),
-    role: z.enum([ROLES.USER, ROLES.AGENT]),
+    role: z.enum([ROLE.USER, ROLE.AGENT]),
     password: z.string().min(6, { error: "password is too short" }),
     confirmPassword: z.string().min(6, { error: "password is too short" }),
   })
@@ -51,7 +51,7 @@ export function RegisterForm({
     defaultValues: {
       name: "",
       email: "",
-      role: ROLES.USER,
+      role: ROLE.USER,
       password: "",
       confirmPassword: "",
     },
@@ -127,8 +127,8 @@ export function RegisterForm({
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value={ROLES.USER}>User</SelectItem>
-                        <SelectItem value={ROLES.AGENT}>Agent</SelectItem>
+                        <SelectItem value={ROLE.USER}>User</SelectItem>
+                        <SelectItem value={ROLE.AGENT}>Agent</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>
