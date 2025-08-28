@@ -249,7 +249,7 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn("border-l absolute top-8 ", className)}
+      className={cn("border-l ", className)}
       onClick={(event) => {
         onClick?.(event);
         sidebar.toggleSidebar();
@@ -257,7 +257,7 @@ function SidebarTrigger({
       {...props}
     >
       <ArrowBigLeft
-        className={`size-8 z-10 absolute ${
+        className={`size-8 z-10 ${
           sidebar.open || sidebar.openMobile ? "" : "rotate-180"
         }`}
       />

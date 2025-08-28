@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 interface ITopbar {
   name: string;
@@ -16,13 +17,16 @@ interface ITopbar {
 
 export default function Topbar({ name, role, picture }: ITopbar) {
   return (
-    <header className="w-full bg-background border-b border-border shadow-sm px-6 py-3 flex justify-between items-center">
+    <header className="w-full bg-background border-b border-border shadow-sm px-3 py-3 flex justify-between items-center">
       {/* Left Section */}
-      <div>
-        <h1 className="text-foreground text-2xl font-semibold">Hi, {name}!</h1>
+      <div className="flex items-center">
+      <SidebarTrigger className="mx-2" />
+        <div>
+            <h1 className="text-foreground text-2xl font-semibold">Hi, {name}!</h1>
         <p className="text-muted-foreground text-sm">
           Manage and review your wallet
         </p>
+        </div>
       </div>
 
       {/* Right Section */}

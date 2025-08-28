@@ -21,7 +21,7 @@ import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 import { Skeleton } from "./ui/skeleton";
 import { Link } from "react-router";
 import { useAppDispatch } from "@/redux/hooks";
-import { ROLE } from "@/constants/roles";
+import { ROLE } from "@/constants";
 import type { TRole } from "@/types";
 
 export default function UserMenu() {

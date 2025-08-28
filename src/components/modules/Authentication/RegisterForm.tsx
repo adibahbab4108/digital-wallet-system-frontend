@@ -22,8 +22,8 @@ import {
 } from "@/components/ui/select";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 import { toast } from "sonner";
-import { Link } from "react-router";
-import { ROLE } from "@/constants/roles";
+import { Link, useNavigate } from "react-router";
+import { ROLE } from "@/constants";
 
 const registerSchema = z
   .object({
@@ -45,7 +45,7 @@ export function RegisterForm({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [register] = useRegisterMutation();
-
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -65,10 +65,9 @@ export function RegisterForm({
         role: data.role,
         password: data.password,
       };
-      console.log(userInfo);
-      const result = await register(userInfo).unwrap();
-      toast.success("Registration successful")
-      console.log(result);
+      await register(userInfo).unwrap();
+      toast.success("Registration successful");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -162,7 +161,9 @@ export function RegisterForm({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="text-foreground">Submit</Button>
+            <Button type="submit" className="text-foreground">
+              Submit
+            </Button>
           </form>
         </Form>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">

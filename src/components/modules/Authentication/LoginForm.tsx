@@ -13,7 +13,7 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import Password from "@/components/ui/passwordField";
 import { toast } from "sonner";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function LoginForm({
   className,
@@ -21,7 +21,6 @@ export function LoginForm({
 }: React.ComponentProps<"form">) {
   const form = useForm();
   const navigate = useNavigate();
-  const location = useLocation()
   // console.log(location)
   const [login] = useLoginMutation();
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -29,7 +28,7 @@ export function LoginForm({
       email: data.email,
       password: data.password,
     };
-    console.log(loginInfo);
+
     try {
       const result = await login(loginInfo).unwrap();
       console.log(result);

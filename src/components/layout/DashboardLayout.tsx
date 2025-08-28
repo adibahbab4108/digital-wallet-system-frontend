@@ -6,8 +6,15 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
+import { Skeleton } from "../ui/skeleton";
+import { useUserInfoQuery } from "@/redux/features/user/user.api";
+import Topbar from "../modules/dashboard/Topbar";
 
 export default function DashboardLayout() {
+    const {data:userData, isLoading} = useUserInfoQuery(undefined) ||[]
+    if(isLoading) return <Skeleton/> 
+  console.log(userData)
+  const {name, role,} = userData.data
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -18,7 +25,9 @@ export default function DashboardLayout() {
           className="mr-2 data-[orientation=vertical]:h-4"
           />
           </header> */}
-          <SidebarTrigger className="" />
+          
+              <Topbar name={name} role={role}/>
+          
         <div className="flex flex-1 flex-col gap-4 p-4">
           <Outlet />
         </div>
