@@ -1,12 +1,33 @@
 import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/modules/dashboard/SectionCards";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import data from "./data.json"
 import { useGetAllUsersQuery } from "@/redux/features/admin/admin.api";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AdminOverview() {
-const {data:userData} = useGetAllUsersQuery(undefined)
-console.log(userData)
+const {data:userData, isLoading} = useGetAllUsersQuery(undefined)
+
+if(isLoading) return <Skeleton/>
+//  {
+//     "id": 2,
+//     "header": "Table of contents",
+//     "type": "Table of contents",
+//     "status": "Done",
+//     "target": "29",
+//     "limit": "24",
+//     "reviewer": "Eddie Lake"
+//   },
+
+// {
+//     "email": "4adibahbab@gmail.com",
+//     "picture": "",
+//     "address": "",
+//     "isDeleted": false,
+//     "userStatus": "ACTIVE",
+//     "isVerified": false,
+//     "role": "USER",
+// }
+
   return (
     <>
      <SidebarProvider
@@ -22,7 +43,7 @@ console.log(userData)
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
               <SectionCards />
-              <DataTable data={data} />
+              <DataTable data={userData?.data} />
             </div>
           </div>
         </div>
