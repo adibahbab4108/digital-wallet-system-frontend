@@ -22,7 +22,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-foreground hover:bg-primary/90"
               >
                 Subscribe
               </button>
@@ -30,18 +30,19 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* Footer Links */}
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-4">
-          
           {/* Brand Info */}
-          <div>
-            <p className="mt-4 text-muted-foreground text-center lg:text-left">
+          <div className="mt-16 mb-12">
+            <p className="mt-4 text-xl text-muted-foreground text-center ">
               Your trusted digital wallet for secure payments, instant transfers, and rewards.
             </p>
           </div>
 
+        {/* Footer Links */}
+        <div className="flex justify-between">
+          
+
           {/* Quick Links */}
-          <div>
+          <div className="">
             <strong className="font-medium text-foreground"> Quick Links </strong>
             <ul className="mt-6 space-y-2">
               <li><Link to="/" className="text-muted-foreground hover:text-foreground">Home</Link></li>

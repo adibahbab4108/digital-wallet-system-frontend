@@ -14,10 +14,17 @@ const adminApi = baseApi.injectEndpoints({
         url: "/admin/all-users",
         method: "GET",
       }),
-      providesTags:["ADMIN"]
+      providesTags: ["ADMIN"],
     }),
-
+    getAllTransactions: build.query({
+      query: (params) => ({
+        url: "/admin/transactions",
+        method: "GET",
+        params: params,
+      }),
+      providesTags: ["ADMIN"],
+    }),
   }),
 });
 
-export const { useGetAllUsersQuery } = adminApi;
+export const { useGetAllUsersQuery, useGetAllTransactionsQuery } = adminApi;
