@@ -34,3 +34,9 @@ export const TRANSACTION_TYPE = {
   CASH_OUT: "CASH_OUT", // agent action
   RECEIVE: "RECEIVE", //user action
 } as const;
+
+export const CURRENCY = {
+  BDT : "BDT",
+  USD : "USD",
+  EUR : "EUR",
+} as const

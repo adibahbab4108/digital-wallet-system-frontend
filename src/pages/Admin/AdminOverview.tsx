@@ -2,12 +2,11 @@ import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/modules/dashboard/SectionCards";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { useGetAllUsersQuery } from "@/redux/features/admin/admin.api";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AdminOverview() {
 const {data:userData, isLoading} = useGetAllUsersQuery(undefined)
 
-if(isLoading) return <Skeleton/>
+if(isLoading) return <h1>Loading...</h1>
 //  {
 //     "id": 2,
 //     "header": "Table of contents",
