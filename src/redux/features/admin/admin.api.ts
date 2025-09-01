@@ -8,6 +8,15 @@ const adminApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: {agentStatus},
       }),
+      invalidatesTags: ["ADMIN"],
+    }),
+    updateUserWalletStatus: build.mutation({
+      query: ({ userId, walletStatus }) => ({
+        url: `/admin/user/${userId}/update-wallet`,
+        method: "PATCH",
+        data: {walletStatus},
+      }),
+       invalidatesTags: ["ADMIN"],
     }),
     getAllUsers: build.query({
       query: () => ({
@@ -31,6 +40,13 @@ const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: ["ADMIN"],
     }),
+    getAllWallet: build.query({
+      query: () => ({
+        url: "/admin/all-wallets",
+        method: "GET",
+      }),
+      providesTags: ["ADMIN"],
+    }),
   }),
 });
 
@@ -38,5 +54,7 @@ export const {
   useGetAllUsersQuery,
   useGetAllAgentsQuery,
   useGetAllTransactionsQuery,
-  useUpdateAgentApprovalMutation
+  useGetAllWalletQuery,
+  useUpdateAgentApprovalMutation,
+  useUpdateUserWalletStatusMutation
 } = adminApi;

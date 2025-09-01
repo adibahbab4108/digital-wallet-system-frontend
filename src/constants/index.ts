@@ -7,7 +7,15 @@ export const ROLE = {
 
 export const USER_STATUS = {
   ACTIVE: "ACTIVE",
+  INACTIVE: "INACTIVE", //automatically inactive when account unused for 2 months
+  DEACTIVE : "DEACTIVE",
+  BLOCKED: "BLOCKED",
+} as const;
+
+export const WALLET_STATUS = {
+  ACTIVE: "ACTIVE",
   INACTIVE: "INACTIVE",
+  DEACTIVE : "DEACTIVE",
   BLOCKED: "BLOCKED",
 } as const;
 
@@ -16,6 +24,7 @@ export const AGENT_STATUS = {
   APPROVED: "APPROVED",
   SUSPENDED: "SUSPENDED",
 } as const;
+
 export const TRANSACTION_TYPE = {
   ALL:"ALL",
   SEND: "SEND", //user action

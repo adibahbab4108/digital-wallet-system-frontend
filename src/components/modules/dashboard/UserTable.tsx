@@ -8,12 +8,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"; // adjust path to your shadcn table components
-import { Button } from "@/components/ui/button"; // adjust path
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useUpdateAgentApprovalMutation } from "@/redux/features/admin/admin.api";
 import { AGENT_STATUS } from "@/constants";
-import { Check, CrossIcon, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { toast } from "sonner";
 interface UserTableProps {
   data: IUser[];
@@ -29,13 +29,13 @@ export default function UserTable({ data }: UserTableProps) {
     if (!id) return;
 
     try {
-    const res =  await updateApproval({
+      const res = await updateApproval({
         agentId: id,
         agentStatus: AGENT_STATUS.APPROVED,
       }).unwrap();
-      console.log(res)
-      if(res.success){
-        toast.success("Approved successfully")
+
+      if (res.success) {
+        toast.success("Approved successfully");
       }
       setRows((prev) =>
         prev.map((u) =>
@@ -49,10 +49,21 @@ export default function UserTable({ data }: UserTableProps) {
     }
   };
 
-  const handleReject = (id?: string) => {
+  const handleReject = async (id?: string) => {
+    const res = await updateApproval({
+      agentId: id,
+      agentStatus: AGENT_STATUS.SUSPENDED,
+    }).unwrap();
+
+    if (res.success) {
+      toast.success("Agent Suspended");
+    }
+
     setRows((prev) =>
       prev.map((u) =>
-        u._id === id ? { ...u, agentStatus: "SUSPENDED", isVerified: false } : u
+        u._id === id
+          ? { ...u, agentStatus: AGENT_STATUS.SUSPENDED, isVerified: false }
+          : u
       )
     );
   };
@@ -87,7 +98,7 @@ export default function UserTable({ data }: UserTableProps) {
             <TableCell>
               <Button
                 size="sm"
-                className="flex flex-col bg-blue-900 text-foreground "
+                className="flex flex-col bg-primary text-foreground "
               >
                 <span className="font-medium text-white">
                   {user.agentStatus}
@@ -117,13 +128,17 @@ export default function UserTable({ data }: UserTableProps) {
                       <span className="sm:hidden">
                         <X />
                       </span>
-                      <span className="hidden sm:inline">Suspend</span>
+                      <span className="hidden sm:inline ">Suspend</span>
                     </Button>
                   </>
                 ) : (
-                  <Badge>
-                    {user.agentStatus === "APPROVED" ? "Approved" : "Suspended"}
-                  </Badge>
+                  <div>
+                    {user.agentStatus === "APPROVED" ? (
+                      <Badge className="text-white bg-green-700">Approved</Badge>
+                    ) : (
+                      <Badge className="text-white bg-red-600">Suspended</Badge>
+                    )}
+                  </div>
                 )}
               </div>
             </TableCell>
