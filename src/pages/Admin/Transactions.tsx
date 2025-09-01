@@ -23,8 +23,6 @@ export default function TransactionsHistoryTable() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
-  console.log(currentPage);
-
   const params: {
     page?: number;
     limit?: number;
@@ -68,7 +66,6 @@ export default function TransactionsHistoryTable() {
     if (action === "next") {
       setCurrentPage((prev) => prev + 1);
     }
-    console.log(currentPage);
   };
 
   return (

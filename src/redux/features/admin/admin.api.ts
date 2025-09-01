@@ -2,16 +2,23 @@ import { baseApi } from "@/redux/baseApi";
 
 const adminApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // login: build.mutation({
-    //   query: (loginInfo) => ({
-    //     url: "/user/",
-    //     method: "POST",
-    //     body: loginInfo,
-    //   }),
-    // }),
+    updateAgentApproval: build.mutation({
+      query: ({ agentId, agentStatus }) => ({
+        url: `/admin/agent/${agentId}/update-approval`,
+        method: "PATCH",
+        data: {agentStatus},
+      }),
+    }),
     getAllUsers: build.query({
       query: () => ({
         url: "/admin/all-users",
+        method: "GET",
+      }),
+      providesTags: ["ADMIN"],
+    }),
+    getAllAgents: build.query({
+      query: () => ({
+        url: "/admin/all-agents",
         method: "GET",
       }),
       providesTags: ["ADMIN"],
@@ -27,4 +34,9 @@ const adminApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllUsersQuery, useGetAllTransactionsQuery } = adminApi;
+export const {
+  useGetAllUsersQuery,
+  useGetAllAgentsQuery,
+  useGetAllTransactionsQuery,
+  useUpdateAgentApprovalMutation
+} = adminApi;

@@ -10,6 +10,7 @@ export const USER_STATUS = {
   INACTIVE: "INACTIVE",
   BLOCKED: "BLOCKED",
 } as const;
+
 export const AGENT_STATUS = {
   PENDING: "PENDING",
   APPROVED: "APPROVED",
