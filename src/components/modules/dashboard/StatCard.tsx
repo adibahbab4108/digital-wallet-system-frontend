@@ -7,13 +7,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
 
 export interface StatCardProps {
   title: string;
   value: string | number;
   currency?: string;
   badgeText?: string;
-  badgeIcon?: LucideIcon;
+  badgeIcon?: LucideIcon | ComponentType;
   footerTitle?: string;
   footerText?: string;
   footerIcon?: LucideIcon;

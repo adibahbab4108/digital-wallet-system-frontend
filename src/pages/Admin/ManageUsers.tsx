@@ -32,8 +32,7 @@ import { useState } from "react";
 export default function ManageUsers() {
   const { data: userData, isLoading: isFetching } =
     useGetAllWalletQuery(undefined);
-  const [updateWalletStatus, { isLoading: isUpdating }] =
-    useUpdateUserWalletStatusMutation();
+  const [updateWalletStatus] = useUpdateUserWalletStatusMutation();
   const [loadingRowId, setLoadingRowId] = useState<string | null>(null);
 
   const handleBlock = async (id: string) => {
@@ -43,10 +42,13 @@ export default function ManageUsers() {
         userId: id,
         walletStatus: WALLET_STATUS.BLOCKED,
       });
-      console.log(result);
+      
       if (result.data) toast.success("Blocked successully");
       if (result.error) {
-        toast.error(result?.error?.data?.message);
+        const errorMessage =
+          (result.error as { data?: { message?: string } })?.data?.message ||
+          "Failed to block user";
+        toast.error(errorMessage);
       }
     } catch (error) {
       console.error("Failed to update wallet status:", error);

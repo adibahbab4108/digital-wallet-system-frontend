@@ -99,8 +99,8 @@ export default function TransactionsHistoryTable() {
               <TableHead>Amount</TableHead>
               <TableHead>Fee</TableHead>
               <TableHead>Commission</TableHead>
-              <TableHead>Sender Email</TableHead>
-              <TableHead>Receiver Email</TableHead>
+              <TableHead>Sender</TableHead>
+              <TableHead>Receiver</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

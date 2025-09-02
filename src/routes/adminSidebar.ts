@@ -15,16 +15,6 @@ export const adminSidebarItems: ISidebarItem[] = [
         component: AdminOverview,
       },
       {
-        title: "Manage Users",
-        url: "/admin/manage-users",
-        component: ManageUsers,
-      },
-      {
-        title: "Manage Agents",
-        url: "/admin/manage-agents",
-        component: ManageAgents,
-      },
-      {
         title: "All transactions",
         url: "/admin/transactions",
         component: Transactions,
@@ -34,6 +24,17 @@ export const adminSidebarItems: ISidebarItem[] = [
   {
     title: "Action",
     // url: "#",
-    items: [],
+    items: [
+      {
+        title: "Manage Users",
+        url: "/admin/manage-users",
+        component: ManageUsers,
+      },
+      {
+        title: "Manage Agents",
+        url: "/admin/manage-agents",
+        component: ManageAgents,
+      },
+    ],
   },
 ];

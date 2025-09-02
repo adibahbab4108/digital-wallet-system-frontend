@@ -14,6 +14,12 @@ export const userSidebarItems: ISidebarItem[] = [
         url: "/user/overview",
         component: UserOverview,
       },
+    ],
+  },
+  {
+    title: "Action",
+    // url: "#",
+    items: [
       {
         title: "Deposit Money",
         url: "/user/deposit",
@@ -30,10 +36,5 @@ export const userSidebarItems: ISidebarItem[] = [
         component: SendMoney,
       },
     ],
-  },
-  {
-    title: "Action",
-    // url: "#",
-    items: [],
   },
 ];
