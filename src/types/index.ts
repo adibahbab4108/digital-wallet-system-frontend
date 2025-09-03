@@ -7,6 +7,16 @@ export interface IResponse<T> {
   message: string;
   data: T;
 }
+export interface IErrorResponse {
+  status: number;
+  data: {
+    success: boolean;
+    message: string;
+    err?: Record<string, any>;
+    stack?: string;
+  };
+}
+
 export interface ISidebarItem {
   title: string;
   items: {
@@ -26,7 +36,7 @@ export interface IAuth {
 }
 
 export interface IUser {
-  _id?:string
+  _id?: string;
   name?: string;
   email: string;
   password?: string;
@@ -61,6 +71,7 @@ export interface ITransaction {
   _id: string;
   type: "SEND" | "RECEIVE" | string;
   status: "COMPLETED" | "PENDING" | "FAILED" | string;
+  createdAt: Date;
   amount: number;
   fee: number;
   commission: number;

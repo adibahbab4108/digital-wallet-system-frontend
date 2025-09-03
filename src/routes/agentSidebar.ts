@@ -1,9 +1,9 @@
 import AgentOverview from "@/pages/Agent/AgentOverview";
 import type { ISidebarItem } from "@/types";
-import CashIn from "@/pages/Agent/CashIn";
-import CashOut from "@/pages/Agent/CashOut";
 import AgentTransactions from "@/pages/Agent/AgentTransactionsView";
 import AgentAddMoney from "@/pages/Agent/AgentAddMoney";
+import AddMoneyToUser from "@/pages/Agent/AddMoneyToUser";
+import WithdrawFromUser from "@/pages/Agent/WithdrawFromUser";
 
 export const agentSidebarItems: ISidebarItem[] = [
   {
@@ -17,7 +17,7 @@ export const agentSidebarItems: ISidebarItem[] = [
       },
       
       {
-        title: "Transactions",
+        title: "Transactions History",
         url: "/agent/transactions",
         component: AgentTransactions,
       },
@@ -33,14 +33,14 @@ export const agentSidebarItems: ISidebarItem[] = [
         component: AgentAddMoney,
       },
       {
-        title: "Cash In",
-        url: "/agent/cash-in",
-        component: CashIn,
+        title: "Add Money to User",
+        url: "/agent/add-money-to-user",
+        component: AddMoneyToUser,
       },
       {
-        title: "Cash Out",
-        url: "/agent/cash-out",
-        component: CashOut,
+        title: "Withdraw from User",
+        url: "/agent/withdraw-from-user",
+        component: WithdrawFromUser,
       },
     ],
   },

@@ -2,22 +2,31 @@ import { baseApi } from "@/redux/baseApi";
 
 const agentApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    something: build.mutation({
-      query: ({ userId, walletStatus }) => ({
-        url: `/admin/user/${userId}/update-wallet`,
-        method: "PATCH",
-        data: { walletStatus },
+    addMoneyToUser: build.mutation({
+      query: ({ receiverEmail, amount }) => ({
+        url: `/agent/add-money-to-user`,
+        method: "POST",
+        data: { receiverEmail, amount },
       }),
-      invalidatesTags: ["ADMIN"],
+      invalidatesTags: ["AGENT"],
+    }),
+    withdrawMoneyFromUser: build.mutation({
+      query: ({ receiverEmail, amount }) => ({
+        url: `/agent/withdraw-money-from-user`,
+        method: "POST",
+        data: { receiverEmail, amount },
+      }),
+      invalidatesTags: ["AGENT"],
     }),
     getAgentTransaction: build.query({
       query: () => ({
-        url: "/wallet/all-users",
+        url: "/agent/all-users",
         method: "GET",
       }),
-      providesTags: ["ADMIN"],
+      providesTags: ["AGENT"],
     }),
   }),
 });
 
-export const {} = agentApi;
+export const { useAddMoneyToUserMutation, useWithdrawMoneyFromUserMutation } =
+  agentApi;

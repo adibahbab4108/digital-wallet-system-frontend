@@ -15,7 +15,6 @@ interface Column<T> {
 }
 
 interface DataTableProps<T> {
-  title: string;
   columns: Column<T>[];
   data: T[];
   isLoading?: boolean;
@@ -25,7 +24,6 @@ interface DataTableProps<T> {
   setCurrentPage: (value: number | ((prev: number) => number)) => void;}
 
 export function DataTable<T>({
-  title,
   columns,
   data,
   isLoading = false,
@@ -44,9 +42,6 @@ export function DataTable<T>({
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-        {title}
-      </h2>
 
       {filters && <div className="flex flex-wrap gap-4 mb-4">{filters}</div>}
 

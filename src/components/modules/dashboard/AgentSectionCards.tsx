@@ -25,9 +25,11 @@ export default function AgentSectionCards() {
           (transaction: { type: string; totalAmount: number }, idx: number) => (
             <StatCard
               key={idx}
-              title={`${transaction.type} Summary`}
+              title={`Total ${transaction.type}`}
               value={transaction.totalAmount}
               currency={CURRENCY.BDT}
+              badgeIcon={IconTrendingUp}
+              badgeText="+0%"
             />
           )
         )

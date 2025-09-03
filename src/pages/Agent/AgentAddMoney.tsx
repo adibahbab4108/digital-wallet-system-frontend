@@ -1,31 +1,19 @@
 import Heading from "@/components/modules/dashboard/Heading";
-import AddMoney from "@/components/modules/wallet/AddMoney";
+import WalletTransactionCard from "@/components/modules/dashboard/wallet/WalletTransactionCard";
 import { useAddMoneyMutation } from "@/redux/features/wallet/wallet.api";
-import { useState } from "react";
 import { toast } from "sonner";
 
 export default function AgentAddMoney() {
-  const [amount, setAmount] = useState("");
-  const [cardNumber, setCardNumber] = useState("4111 1111 1111 1111");
   const [addMoney] = useAddMoneyMutation();
 
-  const handleAddMoney = async () => {
-    if (!amount || isNaN(Number(amount))) {
-      toast.error("Enter a valid amount");
-      return;
-    }
-    if (Number(amount) <= 19) {
-      toast.error("Add at least 20 TK");
-      return;
-    }
+  const handleAddMoney = async (values: { dataField: string; amount: string }) => {
+    const { dataField: cardNumber, amount } = values;
 
-    //UserId isn't required coz I'm  accesing it from decoded req.user in backend
     try {
       const result = await addMoney({ amount: Number(amount) }).unwrap();
-      if (result.success) {
-        toast.success(`Added tk ${Number(amount)} from card ${cardNumber}`);
+      if ((result).success) {
+        toast.success(`Added TK ${amount} from card ${cardNumber}`);
       }
-      setAmount("");
     } catch (error) {
       console.error(error);
       toast.error("Failed to add money");
@@ -35,12 +23,10 @@ export default function AgentAddMoney() {
   return (
     <>
       <Heading title="Add Money to Your Wallet" />
-      <AddMoney
-        amount={amount}
-        cardNumber={cardNumber}
-        setAmount={setAmount}
-        setCardNumber={setCardNumber}
-        handleAddMoney={handleAddMoney}
+      <WalletTransactionCard
+        cardTitle="Add Money"
+        inputFieldTitle="Card Number"
+        handleInputAmount={handleAddMoney}
       />
     </>
   );
