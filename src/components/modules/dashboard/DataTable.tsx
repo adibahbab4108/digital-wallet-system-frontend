@@ -22,8 +22,7 @@ interface DataTableProps<T> {
   filters?: React.ReactNode; 
   currentPage: number;
   totalPages: number;
-  onPageChange: (action: "prev" | "next") => void;
-}
+  setCurrentPage: (value: number | ((prev: number) => number)) => void;}
 
 export function DataTable<T>({
   title,
@@ -33,9 +32,16 @@ export function DataTable<T>({
   filters,
   currentPage,
   totalPages,
-  onPageChange,
+  setCurrentPage,
 }: DataTableProps<T>) {
   if (isLoading) return <h1>Loading...</h1>;
+
+  
+  const handlePageChange = (action: "prev" | "next") => {
+    if (action === "prev") setCurrentPage((prev) => Math.max(prev - 1, 1));
+    if (action === "next") setCurrentPage((prev) => prev + 1);
+  };
+
 
   return (
     <div className="p-4">
@@ -85,7 +91,7 @@ export function DataTable<T>({
         <button
           className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
              cursor-pointer disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-          onClick={() => onPageChange("prev")}
+          onClick={() => handlePageChange("prev")}
           disabled={currentPage <= 1}
         >
           Prev
@@ -96,7 +102,7 @@ export function DataTable<T>({
         <button
           className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
              cursor-pointer disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-          onClick={() => onPageChange("next")}
+          onClick={() => handlePageChange("next")}
           disabled={currentPage === totalPages}
         >
           Next

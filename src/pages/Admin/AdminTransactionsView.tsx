@@ -203,11 +203,6 @@ export default function TransactionsHistoryTable() {
     setSearchParams(params);
   };
 
-  const handlePageChange = (action: "prev" | "next") => {
-    if (action === "prev") setCurrentPage((prev) => Math.max(prev - 1, 1));
-    if (action === "next") setCurrentPage((prev) => prev + 1);
-  };
-
   const columns = [
     { key: "#", label: "#" },
     { key: "type", label: "Type" },
@@ -257,7 +252,7 @@ export default function TransactionsHistoryTable() {
       filters={filters}
       currentPage={currentPage}
       totalPages={totalPages}
-      onPageChange={handlePageChange}
+      setCurrentPage={setCurrentPage}
     />
   );
 }
