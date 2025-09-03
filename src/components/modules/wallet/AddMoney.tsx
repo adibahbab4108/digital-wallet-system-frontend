@@ -58,7 +58,7 @@ export default function AddMoney({
             <Button
               onClick={handleAddMoney}
               disabled={Number(amount) <= 0 }
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-6"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-6 cursor-pointer"
             >
               Add Money
             </Button>

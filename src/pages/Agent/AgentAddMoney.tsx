@@ -21,10 +21,11 @@ export default function AgentAddMoney() {
 
     //UserId isn't required coz I'm  accesing it from decoded req.user in backend
     try {
-      const result = await addMoney({ amount }).unwrap();
+      const result = await addMoney({ amount: Number(amount) }).unwrap();
       if (result.success) {
         toast.success(`Added tk ${Number(amount)} from card ${cardNumber}`);
       }
+      setAmount("");
     } catch (error) {
       console.error(error);
       toast.error("Failed to add money");

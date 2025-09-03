@@ -24,6 +24,14 @@ import { useAppDispatch } from "@/redux/hooks";
 import { ROLE } from "@/constants";
 import type { TRole } from "@/types";
 
+const DASHBOARD_LINKS = {
+  [ROLE.ADMIN]: "/admin/overview",
+  [ROLE.SUPER_ADMIN]: "/admin/overview",
+  [ROLE.AGENT]: "/agent/overview",
+  [ROLE.USER]: "/user/overview",
+};
+const getDashboardLink = (role: TRole) => DASHBOARD_LINKS[role] || "/";
+
 export default function UserMenu() {
   const { data: userData, isLoading } = useUserInfoQuery(undefined);
   const dispatch = useAppDispatch();
@@ -43,18 +51,8 @@ export default function UserMenu() {
   }
 
   const user = userData?.data;
-  const { name = "User", email = "Not available", role, picture } = user || {};
+  const { name = "User", email = "N/A", role, picture = "N/A" } = user || {};
 
-  const DASHBOARD_LINKS = {
-    [ROLE.ADMIN]: "/admin/overview",
-    [ROLE.SUPER_ADMIN]: "/admin/overview",
-    [ROLE.AGENT]: "/agent/overview",
-    [ROLE.USER]: "/user/overview",
-  };
-
-  const getDashboardLink = (role: TRole) => DASHBOARD_LINKS[role] || "/";
-
-  console.log(role);
   return (
     <>
       {user ? (
@@ -94,7 +92,10 @@ export default function UserMenu() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to={getDashboardLink(role)} className="flex items-center gap-2">
+                <Link
+                  to={getDashboardLink(role)}
+                  className="flex items-center gap-2"
+                >
                   <LayoutDashboardIcon size={16} className="opacity-60" />
                   <span>Dashboard</span>
                 </Link>

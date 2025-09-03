@@ -1,4 +1,4 @@
-import UserTable from "@/components/modules/dashboard/UserTable";
+import UserTable from "@/components/modules/dashboard/AdminTableView";
 import { useGetAllAgentsQuery } from "@/redux/features/admin/admin.api";
 
 export default function ManageAgents() {

@@ -1,7 +1,7 @@
 import AdminOverview from "@/pages/Admin/AdminOverview";
 import ManageAgents from "@/pages/Admin/ManageAgents";
 import ManageUsers from "@/pages/Admin/ManageUsers";
-import Transactions from "@/pages/Admin/Transactions";
+import Transactions from "@/pages/Admin/AdminTransactionsView";
 import type { ISidebarItem } from "@/types";
 
 export const adminSidebarItems: ISidebarItem[] = [
