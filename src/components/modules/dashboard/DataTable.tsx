@@ -42,7 +42,6 @@ export function DataTable<T>({
     if (action === "next") setCurrentPage((prev) => prev + 1);
   };
 
-
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">

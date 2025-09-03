@@ -8,6 +8,6 @@ export const baseApi = createApi({
   //   credentials: "include",
   // }),
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["ADMIN","USER","WALLET"],
+  tagTypes: ["ADMIN","USER","WALLET","TRANSACTION"],
   endpoints: () => ({}),
 });

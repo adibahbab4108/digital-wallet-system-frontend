@@ -2,7 +2,7 @@ import AgentOverview from "@/pages/Agent/AgentOverview";
 import type { ISidebarItem } from "@/types";
 import CashIn from "@/pages/Agent/CashIn";
 import CashOut from "@/pages/Agent/CashOut";
-import AgentTransactions from "@/pages/Agent/AgentTransactions";
+import AgentTransactions from "@/pages/Agent/AgentTransactionsView";
 import AgentAddMoney from "@/pages/Agent/AgentAddMoney";
 
 export const agentSidebarItems: ISidebarItem[] = [

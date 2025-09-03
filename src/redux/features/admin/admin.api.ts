@@ -34,7 +34,7 @@ const adminApi = baseApi.injectEndpoints({
     }),
     getAllTransactions: build.query({
       query: (params) => ({
-        url: "/admin/transactions",
+        url: "/transaction/all",
         method: "GET",
         params: params,
       }),

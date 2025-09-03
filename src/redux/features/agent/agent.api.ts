@@ -10,7 +10,7 @@ const agentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["ADMIN"],
     }),
-    something: build.query({
+    getAgentTransaction: build.query({
       query: () => ({
         url: "/wallet/all-users",
         method: "GET",

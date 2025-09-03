@@ -1,27 +1,26 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useGetAllTransactionsQuery } from "@/redux/features/admin/admin.api";
 import { TRANSACTION_TYPE } from "@/constants";
 import { useSearchParams } from "react-router";
 import { useState } from "react";
 import type { ITransaction } from "@/types";
 import { DataTable } from "@/components/modules/dashboard/DataTable";
+import { useGetMyTransactionQuery } from "@/redux/features/transaction/transaction.api";
 
-export default function AdminTransactionView() {
+export default function AgentTransactionView() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const params: { page?: number; limit?: number; type?: string; status?: string; userId?: string } = {
+  const params: { page?: number; limit?: number; type?: string; status?: string;} = {
     page: Number(searchParams.get("page") || currentPage),
     limit: Number(searchParams.get("limit") || 10),
     type: searchParams.get("type") || undefined,
     status: searchParams.get("status") || undefined,
-    userId: searchParams.get("userId") || undefined,
   };
 
-  const { data: transactionData, isLoading } = useGetAllTransactionsQuery(params);
+  const { data: myTransactionData, isLoading } = useGetMyTransactionQuery(params);
 
-  const transactions = transactionData?.data || [];
-  const totalPages = transactionData?.meta?.totalPages || 1;
+  const transactions = myTransactionData?.data || [];
+  const totalPages = myTransactionData?.meta?.totalPages || 1;
 
   const handleFilterChange = (field: string, value: string) => {
     const params = new URLSearchParams(searchParams);
