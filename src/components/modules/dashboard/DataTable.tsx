@@ -11,17 +11,19 @@ import {
 interface Column<T> {
   key: keyof T | string;
   label: string;
-  render?: (row: T) => React.ReactNode;
+  render?: (row: T, index: number) => React.ReactNode;
 }
 
 interface DataTableProps<T> {
   columns: Column<T>[];
   data: T[];
   isLoading?: boolean;
-  filters?: React.ReactNode; 
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (value: number | ((prev: number) => number)) => void;}
+  filters?: React.ReactNode;
+  currentPage?: number;
+  totalPages?: number;
+  setCurrentPage?: (value: number | ((prev: number) => number)) => void;
+  pagination: boolean;
+}
 
 export function DataTable<T>({
   columns,
@@ -31,18 +33,18 @@ export function DataTable<T>({
   currentPage,
   totalPages,
   setCurrentPage,
+  pagination = true,
 }: DataTableProps<T>) {
   if (isLoading) return <h1>Loading...</h1>;
 
-  
   const handlePageChange = (action: "prev" | "next") => {
-    if (action === "prev") setCurrentPage((prev) => Math.max(prev - 1, 1));
-    if (action === "next") setCurrentPage((prev) => prev + 1);
+    if (action === "prev" && setCurrentPage)
+      setCurrentPage((prev) => Math.max(prev - 1, 1));
+    if (action === "next" && setCurrentPage) setCurrentPage((prev) => prev + 1);
   };
 
   return (
-    <div className="p-4">
-
+    <div >
       {filters && <div className="flex flex-wrap gap-4 mb-4">{filters}</div>}
 
       {/* Table */}
@@ -57,11 +59,16 @@ export function DataTable<T>({
           </TableHeader>
           <TableBody>
             {data.length > 0 ? (
-              data.map((row, index) => (
-                <TableRow key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+              data.map((row, rowIndex) => (
+                <TableRow
+                  key={rowIndex}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
                   {columns.map((col) => (
                     <TableCell key={col.key.toString()}>
-                      {col.render ? col.render(row) : (row as any)[col.key]}
+                      {col.render
+                        ? col.render(row, rowIndex + ((currentPage ?? 1) - 1) * 10)
+                        : (row as any)[col.key]}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -81,27 +88,29 @@ export function DataTable<T>({
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-end items-center gap-2 mt-4">
-        <button
-          className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
+      {pagination && (
+        <div className="flex justify-end items-center gap-2 mt-4">
+          <button
+            className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
              cursor-pointer disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-          onClick={() => handlePageChange("prev")}
-          disabled={currentPage <= 1}
-        >
-          Prev
-        </button>
-        <span className="px-2 text-gray-700 dark:text-gray-300">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
+            onClick={() => handlePageChange("prev")}
+            disabled={currentPage <= 1}
+          >
+            Prev
+          </button>
+          <span className="px-2 text-gray-700 dark:text-gray-300">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
              cursor-pointer disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-          onClick={() => handlePageChange("next")}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-      </div>
+            onClick={() => handlePageChange("next")}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }

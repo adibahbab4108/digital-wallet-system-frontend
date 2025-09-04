@@ -42,7 +42,7 @@ export default function AgentTransactionView() {
   };
 
   const columns = [
-    { key: "#", label: "#" },
+    { key: "#", label: "#" , render: (_: Partial<ITransaction>, index: number=1) => index + 1,},
     { key: "type", label: "Type" },
     {
       key: "status",
@@ -115,6 +115,7 @@ export default function AgentTransactionView() {
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
+        pagination={true}
       />
     </>
   );

@@ -36,7 +36,7 @@ export default function UserMenu() {
   const { data: userData, isLoading } = useUserInfoQuery(undefined);
   const dispatch = useAppDispatch();
   const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
-  console.log(userData);
+
   const handleLogout = async () => {
     try {
       await logout(undefined);

@@ -69,6 +69,7 @@ export interface TransactionType {
 }
 export interface ITransaction {
   _id: string;
+  SN: number;
   type: "SEND" | "RECEIVE" | string;
   status: "COMPLETED" | "PENDING" | "FAILED" | string;
   createdAt: Date;

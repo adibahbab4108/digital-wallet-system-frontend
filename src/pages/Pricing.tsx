@@ -1,15 +1,18 @@
+import { handleComingSoonMsg } from "@/utils/comingSoonMsg";
+import { Link } from "react-router";
+
 export default function Pricing() {
   return (
     <div className="container mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
         {/* Starter Plan */}
-        <div className="divide-y divide-gray-200 rounded-2xl border border-muted-foreground shadow-sm">
+        <div className="divide-y divide-gray-600 rounded-2xl border border-muted-foreground/50 shadow-sm">
           <div className="p-6 sm:px-8">
             <h2 className="text-lg font-medium text-foreground">
               Starter
               <span className="sr-only">Plan</span>
             </h2>
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-2 text-muted-foreground h-20">
               Perfect for individuals managing small transactions.
             </p>
             <p className="mt-2 sm:mt-4">
@@ -21,12 +24,13 @@ export default function Pricing() {
                 /month
               </span>
             </p>
-            <a
+            <Link
               className="mt-4 block rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:ring-3 focus:outline-hidden sm:mt-6"
-              href="#"
+              to=""
+              onClick={()=>handleComingSoonMsg("Starter Plan")}
             >
               Get Started
-            </a>
+            </Link>
           </div>
           <div className="p-6 sm:px-8">
             <p className="text-lg font-medium text-foreground sm:text-xl">
@@ -53,15 +57,14 @@ export default function Pricing() {
         </div>
 
         {/* Pro Plan */}
-        <div className="divide-y divide-gray-200 rounded-2xl border border-indigo-500 shadow-lg">
+        <div className="divide-y divide-gray-600 rounded-2xl border border-indigo-500 shadow-lg">
           <div className="p-6 sm:px-8">
             <h2 className="text-lg font-medium text-foreground">
               Pro
               <span className="sr-only">Plan</span>
             </h2>
-            <p className="mt-2 text-muted-foreground">
-              Ideal for freelancers and small businesses handling larger
-              volumes.
+            <p className="mt-2 text-muted-foreground h-20">
+              Ideal for freelancers and small businesses 
             </p>
             <p className="mt-2 sm:mt-4">
               <strong className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -72,12 +75,13 @@ export default function Pricing() {
                 /month
               </span>
             </p>
-            <a
+            <Link
               className="mt-4 block rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:ring-3 focus:outline-hidden sm:mt-6"
-              href="#"
+              to=""
+              onClick={()=>handleComingSoonMsg("Pro Plan")}
             >
               Upgrade Now
-            </a>
+            </Link>
           </div>
           <div className="p-6 sm:px-8">
             <p className="text-lg font-medium text-foreground sm:text-xl">
@@ -104,13 +108,13 @@ export default function Pricing() {
         </div>
 
         {/* Enterprise Plan */}
-        <div className="divide-y divide-gray-200 rounded-2xl border border-muted-foreground shadow-sm">
+        <div className="divide-y divide-gray-600 rounded-2xl border border-muted-foreground/50 shadow-sm">
           <div className="p-6 sm:px-8">
             <h2 className="text-lg font-medium text-foreground">
               Enterprise
               <span className="sr-only">Plan</span>
             </h2>
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-2 text-muted-foreground h-20">
               Best for large-scale businesses and financial institutions.
             </p>
             <p className="mt-2 sm:mt-4">
@@ -122,12 +126,13 @@ export default function Pricing() {
                 /month
               </span>
             </p>
-            <a
+            <Link
               className="mt-4 block rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:ring-3 focus:outline-hidden sm:mt-6"
-              href="#"
+              to=""
+              onClick={()=>handleComingSoonMsg("Enterprise Plan")}
             >
               Contact Sales
-            </a>
+            </Link>
           </div>
           <div className="p-6 sm:px-8">
             <p className="text-lg font-medium text-foreground sm:text-xl">
