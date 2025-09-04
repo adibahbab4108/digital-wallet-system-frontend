@@ -1,6 +1,9 @@
+import UserSectionCards from "@/components/modules/dashboard/UserSectionCards";
 
 export default function UserOverview() {
   return (
-    <div>UserOverview</div>
+    <>
+    <UserSectionCards />
+    </>
   )
 }

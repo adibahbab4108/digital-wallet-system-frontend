@@ -94,7 +94,7 @@ export function DataTable<T>({
             className="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800
              cursor-pointer disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
             onClick={() => handlePageChange("prev")}
-            disabled={currentPage <= 1}
+            disabled={(currentPage ?? 1) <= 1}
           >
             Prev
           </button>

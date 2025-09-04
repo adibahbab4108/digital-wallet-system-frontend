@@ -14,6 +14,7 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebar";
 import { userSidebarItems } from "./userSidebar";
 import { agentSidebarItems } from "./agentSidebar";
+import NotFoundPage from "@/components/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -78,4 +79,8 @@ export const router = createBrowserRouter([
     path: "/register",
     Component: Register,
   },
+  {
+    path: "*",
+    Component: NotFoundPage,
+  }
 ]);
