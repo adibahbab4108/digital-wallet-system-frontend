@@ -44,7 +44,7 @@ export function DataTable<T>({
   };
 
   return (
-    <div >
+    <div className="">
       {filters && <div className="flex flex-wrap gap-4 mb-4">{filters}</div>}
 
       {/* Table */}

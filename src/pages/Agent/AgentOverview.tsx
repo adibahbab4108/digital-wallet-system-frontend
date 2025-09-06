@@ -8,16 +8,16 @@ export default function AgentOverview() {
   const { data: myTransactionData, isLoading } =
     useGetMyTransactionQuery(undefined);
 
-  const transactions =
-    myTransactionData?.data
-      ?.slice(0, 5)
-      .sort(
-        (
-          a: { createdAt: string | number | Date },
-          b: { createdAt: string | number | Date }
-        ) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      ) || [];
-  // const totalPages = myTransactionData?.meta?.totalPages || 1;
+  const transactions = Array.isArray(myTransactionData?.data)
+    ? [...myTransactionData.data]
+        .sort(
+          (
+            a: { createdAt: string | number | Date },
+            b: { createdAt: string | number | Date }
+          ) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        )
+        .slice(0, 5)
+    : [];
 
   const columns = [
     {
@@ -69,7 +69,9 @@ export default function AgentOverview() {
               <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
                 <AgentSectionCards />
                 <div className="p-4 bg-white dark:bg-gray-800 shadow-sm rounded-lg">
-                  <h2 className="text-lg font-medium my-2">Recent Transactions</h2>
+                  <h2 className="text-lg font-medium my-2">
+                    Recent Transactions
+                  </h2>
                   <DataTable<ITransaction>
                     columns={columns}
                     data={transactions}

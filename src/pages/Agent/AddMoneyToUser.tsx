@@ -5,7 +5,7 @@ import type { IErrorResponse } from "@/types";
 import { toast } from "sonner";
 
 export default function AddMoneyToUser() {
-  const [addMoneyToUser] = useAddMoneyToUserMutation();
+  const [addMoneyToUser, {isLoading}] = useAddMoneyToUserMutation();
 
   const handleAddMoneyToUser = async (values: {
     dataField: string;
@@ -36,6 +36,7 @@ export default function AddMoneyToUser() {
       <WalletTransactionCard
         cardTitle="Add Money"
         inputFieldTitle="Receiver Email Address"
+        isSubmitting={isLoading}
         handleInputAmount={handleAddMoneyToUser}
       />
     </>

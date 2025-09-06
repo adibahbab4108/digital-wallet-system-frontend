@@ -14,6 +14,7 @@ import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import Password from "@/components/ui/passwordField";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router";
+import type { IErrorResponse } from "@/types";
 
 export function LoginForm({
   className,
@@ -21,8 +22,8 @@ export function LoginForm({
 }: React.ComponentProps<"form">) {
   const form = useForm();
   const navigate = useNavigate();
-  // console.log(location)
   const [login] = useLoginMutation();
+  
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const loginInfo = {
       email: data.email,
@@ -34,8 +35,9 @@ export function LoginForm({
       console.log(result);
       toast.success("Logged In successful");
       navigate("/");
-    } catch (error) {
-      toast.error(error.data.message);
+    } catch (err) {
+      const error = err as IErrorResponse;
+      toast.error(error?.data?.message);
       console.log(error);
     }
   };

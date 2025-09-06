@@ -11,7 +11,22 @@ const walletApi = baseApi.injectEndpoints({
           data: { amount },
         };
       },
-      invalidatesTags:["WALLET"]
+      invalidatesTags: ["WALLET"],
+    }),
+    sendMoney: build.mutation({
+      query: (info) => {
+        console.log(info);
+        return { url: "/wallet/send-money", method: "POST", data: info };
+      },
+      invalidatesTags: ["WALLET"],
+    }),
+    withdrawMoney: build.mutation({
+      query: ({ agentEmail, amount }) => ({
+        url: "/wallet/withdraw",
+        method: "POST",
+        data: { agentEmail, amount },
+      }),
+      invalidatesTags: ["WALLET"],
     }),
     getMyWallet: build.query({
       query: () => ({
@@ -23,4 +38,9 @@ const walletApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddMoneyMutation, useGetMyWalletQuery } = walletApi;
+export const {
+  useAddMoneyMutation,
+  useSendMoneyMutation,
+  useWithdrawMoneyMutation,
+  useGetMyWalletQuery,
+} = walletApi;
