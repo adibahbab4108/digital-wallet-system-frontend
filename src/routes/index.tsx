@@ -15,6 +15,10 @@ import { adminSidebarItems } from "./adminSidebar";
 import { userSidebarItems } from "./userSidebar";
 import { agentSidebarItems } from "./agentSidebar";
 import NotFoundPage from "@/components/NotFound";
+import Profile from "@/pages/Profile";
+import { withAuth } from "@/utils/withAuth";
+import { ROLE } from "@/constants";
+import type { TRole } from "@/types";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +53,15 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    Component: DashboardLayout,
+    Component: withAuth(DashboardLayout, ROLE.ADMIN as TRole),
+    children: [
+      { index: true, element: <Navigate to="/admin/overview" /> },
+      ...generateRoutes(adminSidebarItems),
+    ],
+  },
+  {
+    path: "/admin",
+    Component: withAuth(DashboardLayout, ROLE.SUPER_ADMIN as TRole),
     children: [
       { index: true, element: <Navigate to="/admin/overview" /> },
       ...generateRoutes(adminSidebarItems),
@@ -57,7 +69,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/agent",
-    Component: DashboardLayout,
+    Component: withAuth(DashboardLayout, ROLE.AGENT as TRole),
     children: [
       { index: true, element: <Navigate to="/agent/overview" /> },
       ...generateRoutes(agentSidebarItems),
@@ -65,7 +77,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/user",
-    Component: DashboardLayout,
+    Component: withAuth(DashboardLayout, ROLE.USER as TRole),
     children: [
       { index: true, element: <Navigate to="/user/overview" /> },
       ...generateRoutes(userSidebarItems),
@@ -78,6 +90,10 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     Component: Register,
+  },
+  {
+    path: "/profile",
+    Component: withAuth(Profile),
   },
   {
     path: "*",
