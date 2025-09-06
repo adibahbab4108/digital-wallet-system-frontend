@@ -21,16 +21,8 @@ import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 import { Skeleton } from "./ui/skeleton";
 import { Link } from "react-router";
 import { useAppDispatch } from "@/redux/hooks";
-import { ROLE } from "@/constants";
-import type { TRole } from "@/types";
+import { getDashboardLink } from "@/utils/getDashboardLink";
 
-const DASHBOARD_LINKS = {
-  [ROLE.ADMIN]: "/admin/overview",
-  [ROLE.SUPER_ADMIN]: "/admin/overview",
-  [ROLE.AGENT]: "/agent/overview",
-  [ROLE.USER]: "/user/overview",
-};
-const getDashboardLink = (role: TRole) => DASHBOARD_LINKS[role] || "/";
 
 export default function UserMenu() {
   const { data: userData, isLoading } = useUserInfoQuery(undefined);

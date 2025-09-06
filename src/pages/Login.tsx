@@ -21,7 +21,7 @@ export default function Login() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <img
-          src="/placeholder.svg"
+          src="https://d53bpfpeyyyn7.cloudfront.net/Pictures/1024x536/3/5/0/3110350_smartwalletconcept_2083048594_601983.jpg"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />

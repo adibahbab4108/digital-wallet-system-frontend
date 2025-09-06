@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-
+import { useUserInfoQuery } from "@/redux/features/user/user.api";
+import { Link } from "react-router";
+import { getDashboardLink } from "@/utils/getDashboardLink";
+import type { TRole } from "@/types";
 function ElegantShape({
   className,
   delay = 0,
@@ -77,6 +80,10 @@ function HeroGeometric({
   title1?: string;
   title2?: string;
 }) {
+  const { data: userData, isLoading } = useUserInfoQuery(undefined);
+
+    const user = userData?.data;
+  const { role} = user || {};
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -183,7 +190,9 @@ function HeroGeometric({
             animate="visible"
             className="items-center gap-2 px-3 py-1 rounded-full  border-white/[0.08] mb-8 md:mb-12"
           >
+           <Link to={getDashboardLink(role as TRole)}>
             <Button className="text-foreground cursor-pointer">{badge}</Button>
+           </Link>
           </motion.div>
         </div>
       </div>
