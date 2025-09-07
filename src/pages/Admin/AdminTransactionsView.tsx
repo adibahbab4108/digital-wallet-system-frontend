@@ -71,13 +71,13 @@ export default function AdminTransactionView() {
 
   return (
     <DataTable<ITransaction>
-      title="Transactions History"
       columns={columns}
       data={transactions}
       isLoading={isLoading}
       filters={filters}
       currentPage={currentPage}
       totalPages={totalPages}
+      pagination={true}
       setCurrentPage={setCurrentPage}
     />
   );

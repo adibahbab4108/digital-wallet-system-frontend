@@ -1,10 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { useUserInfoQuery } from "@/redux/features/user/user.api";
-import { Link } from "react-router";
-import { getDashboardLink } from "@/utils/getDashboardLink";
-import type { TRole } from "@/types";
+
 function ElegantShape({
   className,
   delay = 0,
@@ -80,23 +77,18 @@ function HeroGeometric({
   title1?: string;
   title2?: string;
 }) {
-  const { data: userData, isLoading } = useUserInfoQuery(undefined);
-
-    const user = userData?.data;
-  const { role} = user || {};
-  const fadeUpVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        delay: 0.5 + i * 0.2,
-        ease: [0.25, 0.4, 0.25, 1],
-      },
-    }),
-  };
-
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.2, // Stagger based on index
+      ease: [0.42, 0, 0.58, 1] as [number, number, number, number] // ✅ Proper cubic bezier type
+    }
+  })
+};
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#021131] ">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
@@ -190,9 +182,7 @@ function HeroGeometric({
             animate="visible"
             className="items-center gap-2 px-3 py-1 rounded-full  border-white/[0.08] mb-8 md:mb-12"
           >
-           <Link to={getDashboardLink(role as TRole)}>
             <Button className="text-foreground cursor-pointer">{badge}</Button>
-           </Link>
           </motion.div>
         </div>
       </div>

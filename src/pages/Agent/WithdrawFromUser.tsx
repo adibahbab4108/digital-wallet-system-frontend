@@ -5,7 +5,7 @@ import type { IErrorResponse } from "@/types";
 import { toast } from "sonner";
 
 export default function WithdrawFromUser() {
-  const [withdrawMoneyFromUser] = useWithdrawMoneyFromUserMutation();
+  const [withdrawMoneyFromUser,{isLoading}] = useWithdrawMoneyFromUserMutation();
 
   const handleWithdrawMoneyFromUser = async (values: {
     dataField: string;
@@ -36,6 +36,7 @@ export default function WithdrawFromUser() {
       <WalletTransactionCard
         cardTitle="Withdraw Money"
         inputFieldTitle="Receiver Email Address"
+        isSubmitting={isLoading}
         handleInputAmount={handleWithdrawMoneyFromUser}
       />
     </>
