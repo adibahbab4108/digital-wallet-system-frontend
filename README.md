@@ -1,6 +1,6 @@
 # **Digital Wallet System - Frontend**
 
-A secure, responsive, and role-based digital wallet application built with **React.js**, **Redux Toolkit**, **RTK Query**, and **Tailwind CSS**, designed to provide Users, Agents, and Admins with seamless financial operations and wallet management.
+A secure, responsive, and role-based digital wallet application built with **React.js**, **Redux Toolkit**, **RTK Query**,**shadcn/ui** and **Tailwind CSS**, designed to provide Users, Agents, and Admins with seamless financial operations and wallet management.
 
 ---
 
@@ -34,6 +34,9 @@ The app integrates with a backend API (Node.js/Express + MongoDB) or a mocked AP
 * **JWT + bcrypt** (Authentication & security)
 
 ---
+### **For Testing**
+Email: super.admin@gmail.com
+Password: super.admin
 
 ## **✅ Minimum Functional Requirements**
 
@@ -140,12 +143,6 @@ VITE_API_BASE_URL=http://localhost:5000/api
 npm run dev
 ```
 
-### **5️⃣ Build for production**
-
-```bash
-npm run build
-```
-
 ---
 
 ## **🔐 Authentication Flow**
@@ -166,12 +163,6 @@ npm run build
 
 ---
 
-## **🧪 Testing (Optional)**
-
-* Use **React Testing Library** for component testing
-* **MSW (Mock Service Worker)** for API simulation
-
----
 
 ## **🛡 Security Considerations**
 
