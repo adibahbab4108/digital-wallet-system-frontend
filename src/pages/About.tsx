@@ -9,8 +9,7 @@ export default function About() {
       <AboutCover />
       <Mission />
       <Vision />
-<AboutCallToAction/>
-      
+      <AboutCallToAction />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Shield, Zap, Globe, BarChart3, CreditCard, Smartphone } from "lucide-re
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import featuresImg  from "@/assets/images/features.png"
+import SectionHeader from "@/components/SectionHeader";
 const features = [
   {
     icon: Shield,
@@ -64,12 +65,7 @@ export default function Feature() {
             transition={{ duration: 0.5 }}
             className="inline-block"
           >
-            <Badge 
-              variant="outline" 
-              className="mb-4 px-4 py-2 text-wallet-primary border-wallet-primary/20 bg-wallet-primary/5"
-            >
-              Features
-            </Badge>
+           <SectionHeader header="Features" />
           </motion.div>
           
           <motion.h2 

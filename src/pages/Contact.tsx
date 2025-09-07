@@ -7,6 +7,7 @@ import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Users, Shield } from "
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -86,9 +87,7 @@ const contactInfo = [
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
-            Get in Touch
-          </h1>
+         <SectionHeader header="Get in touch" />
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             We're here to help you with any questions about your digital wallet. 
             Reach out to our support team for assistance.

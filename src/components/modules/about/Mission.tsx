@@ -1,4 +1,5 @@
 import officemen from "@/assets/images/officemen.jpg";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Mission() {
   return (
@@ -11,9 +12,7 @@ export default function Mission() {
         />
       </div>
       <div>
-        <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-          Who We Are
-        </h2>
+       <SectionHeader header="Who We Are" />
         <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
           WalletX is a next-generation digital wallet platform designed to make
           your financial transactions simple, secure, and smart. From sending

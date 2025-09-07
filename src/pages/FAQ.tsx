@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import SectionHeader from "@/components/SectionHeader";
 
 const faqData = [
   {
@@ -87,9 +88,7 @@ export function FAQs() {
             <HelpCircle className="w-8 h-8 text-white" />
           </motion.div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-4">
-            Frequently Asked Questions
-          </h1>
+          <SectionHeader header="Frequently Asked Questions" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Find answers to the most common questions about our digital wallet,
             security, and transactions.

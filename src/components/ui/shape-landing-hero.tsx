@@ -1,6 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
+import { toast } from "sonner";
 
 function ElegantShape({
   className,
@@ -77,18 +78,18 @@ function HeroGeometric({
   title1?: string;
   title2?: string;
 }) {
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay: i * 0.2, // Stagger based on index
-      ease: [0.42, 0, 0.58, 1] as [number, number, number, number] // ✅ Proper cubic bezier type
-    }
-  })
-};
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: i * 0.2, // Stagger based on index
+        ease: [0.42, 0, 0.58, 1] as [number, number, number, number], // ✅ Proper cubic bezier type
+      },
+    }),
+  };
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#021131] ">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
@@ -182,7 +183,16 @@ const fadeUpVariants: Variants = {
             animate="visible"
             className="items-center gap-2 px-3 py-1 rounded-full  border-white/[0.08] mb-8 md:mb-12"
           >
-            <Button className="text-foreground cursor-pointer">{badge}</Button>
+            <Button
+              onClick={() => {
+                toast.info(
+                  "This feature is currently under development. Stay tuned—exciting updates are on the way!"
+                );
+              }}
+              className="text-foreground cursor-pointer"
+            >
+              {badge}
+            </Button>
           </motion.div>
         </div>
       </div>
