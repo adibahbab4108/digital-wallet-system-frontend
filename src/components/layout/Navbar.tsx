@@ -1,5 +1,4 @@
 import Logo from "@/assets/icons/logo";
-import NotificationMenu from "@/components/notification-menu";
 import UserMenu from "@/components/user-menu";
 import { Button } from "@/components/ui/button";
 import {
@@ -107,8 +106,6 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {/* DarkMode Toggle */}
             <ModeToggle />
-            {/* Notification */}
-            <NotificationMenu />
           </div>
           {/* User menu */}
           <UserMenu />

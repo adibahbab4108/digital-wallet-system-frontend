@@ -1,7 +1,9 @@
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import { toast } from "sonner";
+import { useUserInfoQuery } from "@/redux/features/user/user.api";
+import { Link } from "react-router";
+import { getDashboardLink } from "@/utils/getDashboardLink";
 
 function ElegantShape({
   className,
@@ -90,6 +92,12 @@ function HeroGeometric({
       },
     }),
   };
+  const { data: userData, isLoading: isUserLoading } =
+    useUserInfoQuery(undefined);
+
+  const user = userData?.data;
+  const { role } = user || {};
+
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#021131] ">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
@@ -184,14 +192,12 @@ function HeroGeometric({
             className="items-center gap-2 px-3 py-1 rounded-full  border-white/[0.08] mb-8 md:mb-12"
           >
             <Button
-              onClick={() => {
-                toast.info(
-                  "This feature is currently under development. Stay tuned—exciting updates are on the way!"
-                );
-              }}
+              disabled={isUserLoading}
               className="text-foreground cursor-pointer"
             >
-              {badge}
+              <Link to={role ? getDashboardLink(role) : "/login"}>
+                {isUserLoading ? "Loading..." : badge}
+              </Link>
             </Button>
           </motion.div>
         </div>
